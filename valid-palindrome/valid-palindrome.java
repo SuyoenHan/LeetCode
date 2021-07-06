@@ -8,21 +8,18 @@ class Solution {
         } // end of for-------------------------
         
         // 2) 대소문자를 구분하지 않음
-	    newS= newS.toLowerCase();     
+	newS= newS.toLowerCase();     
 	    
-	    // 3) 팰린드롬인지 판단
-	    boolean isPalindrome= true;
-	    for(int i=0;i<newS.length();i++) {
-	    	
-	    	if(newS.charAt(i)!=newS.charAt(newS.length()-(i+1))){
-	    		isPalindrome= false;
-	    		break;
-	    	}
-	    } // end of for------------------------
-	    
-	    return isPalindrome;
-        
-        
-        
+        // 3) 팰린드롬인지 판단
+        boolean isPalindrome= true;
+        for(int i=0;i<newS.length();i++) {
+
+	     if(newS.charAt(i)!=newS.charAt(newS.length()-(i+1))){
+		 isPalindrome= false;
+		 break;
+	      }
+        } // end of for------------------------
+
+        return isPalindrome;
     }
 }
