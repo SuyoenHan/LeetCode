@@ -1,20 +1,23 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
 		
-		int needNum=0;
-		int[] answerArr= new int[2];
+		// 1) target-각 배열의 값을 맵에 저장 
+		Map<Integer,Integer> map= new HashMap<>();
 		
-		// 1) target-특정값에 해당하는 값이 있는지 확인
-		for(int i=0;i<nums.length-1;i++) {
-			needNum=target-nums[i];
-			for(int j=i+1;j<nums.length;j++) {
-				if(needNum==nums[j]) {
-					answerArr[0]=i;
-					answerArr[1]=j;
-				}
+		for(int i=0;i<nums.length;i++) {
+			map.put(target-nums[i], i); // key값과 value값을 바꾸면 같은 인덱스의 값인지 판단할 수 없다
+		}
+		
+		int[] answerArr= null; 
+		// 2) 맵에 저장된 키값이 존재하는지 확인
+		for(int i=0;i<nums.length;i++) {
+			if(map.containsKey(nums[i]) && map.get(nums[i])!=i) { // 같은 인덱스의 값은 중복사용 불가
+				answerArr= new int[] {map.get(nums[i]),i};
+				break;
 			}
-		} // end of for(int i=0;i<nums.length-1;i++) {----------
+		}
 		
 		return answerArr;
+		
 	} // end of public int[] twoSum(int[] nums, int target) {----
 }
