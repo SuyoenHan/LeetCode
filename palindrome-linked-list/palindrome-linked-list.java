@@ -9,36 +9,29 @@
  * }
  */
 class Solution {
-   public boolean isPalindrome(ListNode head) {
-	        
-		  // 데크 구조로 풀이
-		  Deque<Integer> dq= new ArrayDeque<>();
-	      boolean answer= true;
-	      
-	      // 1) 데크에 순차적으로 쌓기
-		  while(head!=null) {
-			  dq.offer(head.val);
+    public boolean isPalindrome(ListNode head) {
+		 
+       // 2-1) 팰린드롬 검사 할 head		 
+	     ListNode pHead= head; 
+		 
+		  // 1) 스택 사용
+		  Stack<Integer> stack= new Stack<>();
+		  while(head!=null) {  
+			  stack.push(head.val);
 			  head=head.next;
 		  }
 		  
-		  // 2) 데크에 쌓인 값들을 이용하여 팰린드롬 판단
-		  while(dq.size()>0) {
-			  
-			  if(dq.size()==1) {
-				  answer=true;
-				  break;
+		  // 2) 스택에 쌓인 값들을 이용하여 팰린드롬 판단
+		  while(pHead!=null) {
+			  if(pHead.val!=stack.peek()) { // 첫번째 값과 마지막 값이 같지 않은 경우 => 팰린드롬이 아니다
+				  return false;
 			  }
-			  
-			  if(dq.peekFirst()==dq.peekLast()) { 
-				  dq.pollFirst();
-				  dq.pollLast();
+			  else {
+				 pHead=pHead.next;
+				 stack.pop();
 			  }
-			  else { // 팰린드롬이 아닌  경우
-				  answer=false;
-				  break;
-			  }
-		  } // end of while(dq.size()>0) {--------
-	      return answer;
-	      
+		  } // end of while(pHead!=null) {------
+		  
+		  return true;
 	} // end of public boolean isPalindrome(ListNode head) {-----------
 }
