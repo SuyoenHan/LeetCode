@@ -34,21 +34,10 @@ class Solution {
 			}
 		} // end of while(l1!=null && l2!=null) {------
 			 
-		// 3) 남아있는 값들 순차적으로 넣어주기
-		if(l1==null) {
-		     while(l2!=null){
-                     	answer.next=l2;
-                     	l2=l2.next;
-                     	answer=answer.next;
-                     }
-		}
-		else {
-		     while(l1!=null){
-                    	answer.next=l1;
-                   	l1=l1.next;
-                   	answer=answer.next;
-                     } 
-		}
+		// 3) 남아있는 값 처리
+		if(l1==null) answer.next=l2;
+	   	else answer.next=l1;
+			 
 	} // end of else----------------------
 		 
 	return result.next;
